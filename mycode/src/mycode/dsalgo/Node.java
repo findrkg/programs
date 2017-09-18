@@ -18,7 +18,7 @@ public class Node {
 		Node head = new Node(1, new Node(2, new Node(3, new Node(4, null))));
 		while(head != null) {
 			System.out.print(head.data +">");
-			head = head.next;			
+			head = head.next;
 		}		
 	}
 }
