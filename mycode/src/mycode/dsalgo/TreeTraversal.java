@@ -6,6 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class TreeTraversal {
 
 	void levelOrder(TreeNode root) {
+		if(root==null) return; 
 		Queue<TreeNode> queue = new LinkedBlockingQueue<>();
 		queue.add(root);
 		while (!queue.isEmpty()) {
@@ -17,6 +18,31 @@ public class TreeTraversal {
 				queue.add(node.right);
 		}
 	}
+
+	void zigzagOrder(TreeNode root) {
+		if(root==null) return;
+		Queue<TreeNode> queue = new LinkedBlockingQueue<>();
+		queue.add(root);
+		boolean directionFlag = true;
+		while (!queue.isEmpty()) {
+			TreeNode node = queue.poll();
+			System.out.print(node.data + " ");
+			if(!directionFlag) {
+				if (node.left != null)
+					queue.add(node.left);
+				if (node.right != null)
+					queue.add(node.right);				
+			}
+			else {
+				if (node.right != null)
+					queue.add(node.right);				
+				if (node.left != null)
+					queue.add(node.left);
+			}
+			directionFlag = !directionFlag;
+		}
+	}
+
 
 	void preOrder(TreeNode root) {
 		if (root != null) {
@@ -61,7 +87,9 @@ public class TreeTraversal {
 		System.out.println("");
 		System.out.print("Post Order : ");
 		tree.postOrder(root);
-
+		System.out.println("");
+		System.out.print("Zigzag Order : ");
+		tree.zigzagOrder(root);
 	}
 
 }
