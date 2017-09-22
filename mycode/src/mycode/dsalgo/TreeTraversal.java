@@ -1,6 +1,10 @@
 package mycode.dsalgo;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
+import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class TreeTraversal {
@@ -43,6 +47,20 @@ public class TreeTraversal {
 		}
 	}
 
+	void verticalSum(TreeNode root, int level, TreeMap levelSumMap) {
+		if(root == null) {
+			return;
+		}
+		verticalSum(root.left, level-1, levelSumMap);
+		if(levelSumMap.get(level) != null) {
+			int sum = (Integer)levelSumMap.get(level) + root.data;
+			levelSumMap.put(level, sum);
+		}
+		else {
+			levelSumMap.put(level, root.data);
+		}
+		verticalSum(root.right, level+1, levelSumMap);
+	}
 
 	void preOrder(TreeNode root) {
 		if (root != null) {
@@ -65,7 +83,7 @@ public class TreeTraversal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/*
-		 * 		1 
+		 * 		 1 
 		 * 	  2     3 
 		 * 4    5  6  7
 		 */
@@ -90,6 +108,15 @@ public class TreeTraversal {
 		System.out.println("");
 		System.out.print("Zigzag Order : ");
 		tree.zigzagOrder(root);
+		System.out.println("");
+		System.out.print("Vertical sum : ");
+		TreeMap<Integer, Integer> levelSumMap = new TreeMap<>();
+		tree.verticalSum(root, 0, levelSumMap);
+		
+		for(Entry<Integer,Integer> entry: levelSumMap.entrySet()) {
+			System.out.print(entry.getValue()+ " ");
+		}
+
 	}
 
 }
