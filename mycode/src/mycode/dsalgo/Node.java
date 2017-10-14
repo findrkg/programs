@@ -13,6 +13,22 @@ public class Node {
 		this.next = next;
 	}
 
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public Node getNext() {
+		return next;
+	}
+
+	public void setNext(Node next) {
+		this.next = next;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Node head = new Node(1, new Node(2, new Node(3, new Node(4, null))));
