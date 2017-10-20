@@ -1,8 +1,8 @@
 package mycode.dsalgo;
 
 public class Node {
-	private int data;
-	private Node next;
+	public int data;
+	public Node next;
 	Node() {
 		this.data = 0;
 		this.next = null;
