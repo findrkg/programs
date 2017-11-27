@@ -50,7 +50,6 @@ public class MongoDBSingleton {
 //		}
 		if (db == null)
 			db = mongoClient.getDB(dbName);
-
 		return db;
 	}
 }

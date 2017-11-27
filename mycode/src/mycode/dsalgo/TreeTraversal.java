@@ -71,6 +71,15 @@ public class TreeTraversal {
 		}
 	}
 
+	void inOrder(TreeNode root) {
+		if (root != null) {
+			// Visit the node-Printing the node data			
+			inOrder(root.left);
+			System.out.print(root.data + " ");
+			inOrder(root.right);
+		}
+	}
+
 	public void postOrder(TreeNode root) {
 		if (root != null) {
 			postOrder(root.left);

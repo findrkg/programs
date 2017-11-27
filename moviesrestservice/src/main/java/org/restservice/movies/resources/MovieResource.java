@@ -15,6 +15,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -28,23 +29,21 @@ import org.restservice.movies.service.MovieService;
 
 @Path("movies")
 @Consumes(MediaType.APPLICATION_JSON)
-@Produces(value={MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
+@Produces(value={MediaType.APPLICATION_JSON})
 public class MovieResource {
 	MovieService movieService = new MovieService();
 
 	@GET
-	@Path("/file")
+	@Path("/version")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response getAllMoviesFile() {
-		File file = new File("C:/data/movies.txt");
-		ResponseBuilder respBuilder = Response.status(Status.OK).entity((Object)file);
-		respBuilder.header("Content-Disposition", "attachment; filename=demo.txt");
-		return respBuilder.build();
+	public Long getLatestVerion() {
+		return movieService.getLatestVerion();
 	}
 
 	@GET
-	public List<Movie> getAllMovies() {
-		return movieService.getAllMovies();
+	public List<Movie> getAllMovies(@QueryParam("language") String lang, 
+			@QueryParam("year") String year, @QueryParam("version") Long version) {
+		return movieService.getAllMovies(lang, year, version);
 	}
 	
 	@GET
@@ -56,9 +55,23 @@ public class MovieResource {
 
 	@POST
 	//@RolesAllowed("admin")
-	public Response addMovie(Movie movie, @Context SecurityContext securityContext) {
+	public Movie addMovie(Movie movie) {
 		Movie movieAdded = movieService.addMovie(movie);
-		return Response.status(Status.CREATED).entity(movieAdded).build();
+		return movieAdded;
+	}
+
+	@PUT
+	@Path("/{movieId}")
+	public Movie updateMovie(Movie movie) {
+		Movie updatedMovie = movieService.updateMovie(movie);
+		return updatedMovie;
+	}
+
+	@DELETE
+	@Path("/{movieId}")
+	public Response deleteMovie(@PathParam("movieId") Long movieId) {
+		movieService.deleteMovie(movieId);
+		return Response.status(Status.OK).build();
 	}
 
 }

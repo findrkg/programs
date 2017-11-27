@@ -2,14 +2,17 @@ package org.restservice.movies.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @XmlRootElement
 public class Movie {
-	long id;
-	String name;
-	String leadActor;
-	String leadActoress;
-	String director;
-	String year;
+	private long id;
+	private String title;
+	private String actor;
+	private String actoress;
+	private String director;
+	private String year;
+	private String language;
+	private long version;
 
 	public long getId() {
 		return id;
@@ -17,23 +20,23 @@ public class Movie {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getLeadActor() {
-		return leadActor;
+	public String getActor() {
+		return actor;
 	}
-	public void setLeadActor(String actor) {
-		this.leadActor = actor;
+	public void setActor(String actor) {
+		this.actor = actor;
 	}
-	public String getLeadActoress() {
-		return leadActoress;
+	public String getActoress() {
+		return actoress;
 	}
-	public void setLeadActoress(String actoress) {
-		this.leadActoress = actoress;
+	public void setActoress(String actoress) {
+		this.actoress = actoress;
 	}
 	public String getDirector() {
 		return director;
@@ -47,5 +50,17 @@ public class Movie {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	public long getVersion() {
+		return version;
+	}
+	public void setVersion(long version) {
+		this.version = version;
+	}
+
 }

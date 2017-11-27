@@ -8,9 +8,13 @@ import org.restservice.movies.exception.DataNotFoundException;
 import org.restservice.movies.model.Movie;
 
 public class MovieService {
-	
-	public List<Movie> getAllMovies() {
-		List<Movie> list = DatabaseClass.getAllMovies();
+
+	public Long getLatestVerion() {
+		return DatabaseClass.getLatestVerion();
+	}
+
+	public List<Movie> getAllMovies(String lang, String year, Long version) {
+		List<Movie> list = DatabaseClass.getAllMovies(lang, year, version);
 		return list;
 	}
 
@@ -26,16 +30,14 @@ public class MovieService {
 		DatabaseClass.addMovie(movie);
 		return movie;
 	}
+
+	public Movie updateMovie(Movie movie) {
+		DatabaseClass.updateMovie(movie);
+		return movie;
+	}
+
+	public void deleteMovie(Long movieId) {
+		DatabaseClass.deleteMovie(movieId);
+	}
 	
-//	public Message updateMessage(Movie movie) {
-//		if (message.getId() <= 0) {
-//			return null;
-//		}
-//		messages.put(message.getId(), message);
-//		return message;
-//	}
-//	
-//	public Message removeMessage(long id) {
-//		return messages.remove(id);
-//	}
 }
