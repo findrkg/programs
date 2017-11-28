@@ -80,12 +80,11 @@ public class DatabaseClass {
 	public static Movie getMovie(Long movieId) {
 		DB db = dbSingleton.getMoviesdb();
 		DBCollection moviesCollection = db.getCollection("movies");
-		DBObject o = moviesCollection.findOne(new BasicDBObject("id", movieId));
+		DBObject o = moviesCollection.findOne(new BasicDBObject("id", movieId));		
+		Gson gson = new Gson();
 		Movie movie = null;
-		try {
-			Gson gson = new Gson();
+		try {			
 	        movie = gson.fromJson(((BasicDBObject)o).toString(), Movie.class);
-	        //String json = gson.toJson(movie);
 		}
 		catch(JsonSyntaxException ex) {
 			ex.printStackTrace();
@@ -98,33 +97,26 @@ public class DatabaseClass {
 		DB db = dbSingleton.getMoviesdb();
 		DBCollection moviesCollection = db.getCollection("movies");
 		DBCollection versionCollection = db.getCollection("moviesversion");
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			String jsonString = mapper.writeValueAsString(movie);
-			Document doc = Document.parse(jsonString);
-			BasicDBObject docObj = new BasicDBObject(doc);
-			moviesCollection.insert(docObj);
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(movie);
+		Document doc = Document.parse(jsonString);
+		BasicDBObject docObj = new BasicDBObject(doc);
+		moviesCollection.insert(docObj);
 
-			long size = (Long)moviesCollection.count();
-			//update the id
-			BasicDBObject query = new BasicDBObject("_id", docObj.getObjectId("_id"));
-			BasicDBObject update = new BasicDBObject();
-			update.put("$set", new BasicDBObject("id", (Long)moviesCollection.count()));
-			update.put("$set", new BasicDBObject("version", size+1));
-			moviesCollection.findAndModify(query, update);
-
-			//update the version number	
-			if(size == 0) {
-				versionCollection.insert(new BasicDBObject("latestVersion", size+1));
-			}
-			else {
-				BasicDBObject verupdate = new BasicDBObject();
-				verupdate.put("$set", new BasicDBObject("latestVersion", size+1));
-				versionCollection.findAndModify(new BasicDBObject(), verupdate);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();			
+		Long size = (Long)moviesCollection.count();
+		//update the id
+		BasicDBObject query = new BasicDBObject("_id", docObj.getObjectId("_id"));
+		BasicDBObject update = new BasicDBObject();
+		update.put("$set", new BasicDBObject("id", size).append("version", size));
+		moviesCollection.findAndModify(query, update);
+		//update the version number	
+		if(size == 1) {
+			versionCollection.insert(new BasicDBObject("latestVersion", size));
+		}
+		else {
+			BasicDBObject verupdate = new BasicDBObject();
+			verupdate.put("$set", new BasicDBObject("latestVersion", size));
+			versionCollection.findAndModify(new BasicDBObject(), verupdate);
 		}
 		return movie;
 	}
@@ -133,20 +125,14 @@ public class DatabaseClass {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getMoviesdb();		
 		DBCollection moviesCollection = db.getCollection("movies");
+		Long size = (Long)moviesCollection.count();
 		BasicDBObject query = new BasicDBObject("id", newMovie.getId());
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			long size = (Long)moviesCollection.count();
-			String jsonString = mapper.writeValueAsString(newMovie);
-			Document doc = Document.parse(jsonString);
-			BasicDBObject update = new BasicDBObject();
-			update.put("$set", doc);
-			update.put("$set", new BasicDBObject("version", size+1));
-			moviesCollection.update(query, update);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Gson gson = new Gson();		
+		String jsonString = gson.toJson(newMovie);
+		Document doc = Document.parse(jsonString);
+		BasicDBObject update = new BasicDBObject();
+		update.put("$set", new BasicDBObject(doc).append("version", size));
+		moviesCollection.update(query, update);
 		return newMovie;
 	}
 	
