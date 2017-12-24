@@ -10,7 +10,7 @@ public class StackReverse {
             return;
         }
 
-        /** First push all element to program stack **/
+        /** First pop all element from stack **/
         int element = stack.pop();
         reverse(stack);
 
@@ -30,7 +30,7 @@ public class StackReverse {
         int temp = stack.pop();
         insertAtBottom(stack, element);
 
-        /** Add remove elements back to stack after adding bottom element **/
+        /** Add removed elements back to stack after adding bottom element **/
         stack.push(temp);
     }
 
