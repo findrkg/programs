@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -71,7 +72,7 @@ public class TreeTraversal {
 		}
 	}
 
-	void inOrder(TreeNode root) {
+	public void inOrder(TreeNode root) {
 		if (root != null) {
 			// Visit the node-Printing the node data			
 			inOrder(root.left);
@@ -89,12 +90,78 @@ public class TreeTraversal {
 		}
 	}
 
+	public void inOrderIterative(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while(!st.isEmpty()) {
+			TreeNode node = st.peek();
+			if(node.left != null) {
+				st.push(node.left);
+				node.left = null;
+			}
+			else {
+				System.out.print(node.data+ " ");
+				st.pop();
+				if(node.right != null) {
+					st.push(node.right);
+					node.right = null;
+				}				
+			}
+		}
+	}
+
+	public void preOrderIterative(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while(!st.isEmpty()) {
+			TreeNode node = st.pop();
+			System.out.print(node.data+ " ");
+			if(node.right != null) {
+				st.push(node.right);
+			}
+			if(node.left != null) {
+				st.push(node.left);
+			}
+		}
+	}
+
+	public void postOrderIterative(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while(!st.isEmpty()) {
+			TreeNode node = st.peek();
+	        if(node.left == null && node.right == null) {
+	            TreeNode n = st.pop();
+	            System.out.print(n.data+" ");
+	        }
+	        else {
+	            if(node.right != null) {
+	                st.push(node.right);
+	                node.right = null;
+	            }
+	            if(node.left != null) {
+	                st.push(node.left);
+	                node.left = null;
+	            }
+	        }
+		}
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/*
 		 * 		 1 
-		 * 	  2     3 
-		 * 4    5  6  7
+		 * 	  2      3 
+		 * 4    5  6   7
 		 */
 
 		TreeNode root = new TreeNode(1);
@@ -106,25 +173,31 @@ public class TreeTraversal {
 		root.right.right = new TreeNode(7);
 
 		TreeTraversal tree = new TreeTraversal();
-		System.out.print("Level Order : ");
-		tree.levelOrder(root);
-		System.out.println("");
-		System.out.print("Pre Order : ");
-		tree.preOrder(root);
-		System.out.println("");
-		System.out.print("Post Order : ");
-		tree.postOrder(root);
-		System.out.println("");
-		System.out.print("Zigzag Order : ");
-		tree.zigzagOrder(root);
-		System.out.println("");
-		System.out.print("Vertical sum : ");
-		TreeMap<Integer, Integer> levelSumMap = new TreeMap<>();
-		tree.verticalSum(root, 0, levelSumMap);
+//		System.out.print("Level Order : ");
+//		tree.levelOrder(root);
+//		System.out.println("");
+//		System.out.print("Pre Order : ");
+//		tree.preOrder(root);
+//		System.out.println("");
+//		System.out.print("Post Order : ");
+//		tree.postOrder(root);
+//		System.out.println("");
+//		System.out.print("Zigzag Order : ");
+//		tree.zigzagOrder(root);
+//		System.out.println("");
+//		System.out.print("Vertical sum : ");
+//		TreeMap<Integer, Integer> levelSumMap = new TreeMap<>();
+//		tree.verticalSum(root, 0, levelSumMap);
+//		
+//		for(Entry<Integer,Integer> entry: levelSumMap.entrySet()) {
+//			System.out.print(entry.getValue()+ " ");
+//		}
 		
-		for(Entry<Integer,Integer> entry: levelSumMap.entrySet()) {
-			System.out.print(entry.getValue()+ " ");
-		}
+		System.out.print("Post Order Iterative : ");		
+		tree.postOrderIterative(root);
+//		tree.inOrderIterative(root);
+//		System.out.println("In Order : ");
+//		tree.preOrder(root);
 
 	}
 
