@@ -24,6 +24,26 @@ public class TreeTraversal {
 		}
 	}
 
+	void reverseLevelOrder(TreeNode root) {
+		if(root==null) return; 
+		Queue<TreeNode> queue = new LinkedBlockingQueue<>();
+		Stack<TreeNode> stack = new Stack<>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			TreeNode node = queue.poll();
+			stack.push(node);
+			//System.out.print(node.data + " ");
+			if (node.left != null)
+				queue.add(node.left);
+			if (node.right != null)
+				queue.add(node.right);
+		}
+		while(!stack.isEmpty()) {
+			TreeNode node = stack.pop();
+			System.out.print(node.data + " ");
+		}
+	}
+
 	void zigzagOrder(TreeNode root) {
 		if(root==null) return;
 		Queue<TreeNode> queue = new LinkedBlockingQueue<>();
@@ -173,8 +193,8 @@ public class TreeTraversal {
 		root.right.right = new TreeNode(7);
 
 		TreeTraversal tree = new TreeTraversal();
-//		System.out.print("Level Order : ");
-//		tree.levelOrder(root);
+		System.out.print("Level Order : ");
+		tree.levelOrder(root);
 //		System.out.println("");
 //		System.out.print("Pre Order : ");
 //		tree.preOrder(root);
@@ -193,12 +213,15 @@ public class TreeTraversal {
 //			System.out.print(entry.getValue()+ " ");
 //		}
 		
-		System.out.print("Post Order Iterative : ");		
-		tree.postOrderIterative(root);
+//		System.out.print("Post Order Iterative : ");		
+//		tree.postOrderIterative(root);
 //		tree.inOrderIterative(root);
 //		System.out.println("In Order : ");
 //		tree.preOrder(root);
-
+		
+		System.out.println("");
+		System.out.print("Reverse Level Order : ");
+		tree.reverseLevelOrder(root);
 	}
 
 }
