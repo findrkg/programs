@@ -15,17 +15,17 @@ public class SearchInSortedMatrix {
 	public static boolean search(int[][] matrix, int target) {
 		int rowLength = matrix.length;
 		int colLength = matrix[0].length;
-		int i = 0;
-		int j = colLength-1;
-		while(i <= rowLength-1 && j >= 0) {
-			if(matrix[i][j] == target) {
+		int row = 0;
+		int col = colLength-1;
+		while(row <= rowLength-1 && col >= 0) {
+			if(matrix[row][col] == target) {
 				return true;
 			}
-			else if(matrix[i][j] < target) {
-				i++;
+			else if(matrix[row][col] < target) {
+				row++;
 			}
 			else {
-				j--;
+				col--;
 			}
 		}
 		return false;
