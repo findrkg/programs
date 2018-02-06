@@ -34,12 +34,19 @@ public class Node {
 		this.next = next;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Node head = new Node(1, new Node(2, new Node(3, new Node(4, null))));
+	public static void print(Node head) {
 		while(head != null) {
 			System.out.print(head.data +">");
 			head = head.next;
 		}		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Node head = new Node(1, new Node(2, new Node(3, new Node(4, null))));
+//		while(head != null) {
+//			System.out.print(head.data +">");
+//			head = head.next;
+//		}
+		print(head);
 	}
 }

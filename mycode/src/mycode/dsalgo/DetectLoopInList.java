@@ -45,7 +45,13 @@ public class DetectLoopInList {
 		return false;
 	}
 
-	/* http://javabypatel.blogspot.in/2017/05/remove-loop-from-linked-list-in-java.html
+	/* 
+	 * l = length of loop
+	Distance covered by slow pointer = d = x + p*l + y
+	Distance covered by fast pointer = 2d = x + q*l + y
+	2(x + p*l + y) = x + q*l + y
+	x + y = (q-2p)*l // q >p and x+y is integer multiple of loop length 
+	http://javabypatel.blogspot.in/2017/05/remove-loop-from-linked-list-in-java.html
 	Tortoise pointer was moving one node at a time and hare pointer was moving 2 nodes at same time.
 	So we can say, when tortoise pointer has moved distance "d" 
 	then hare pointer has moved distance "2d".
