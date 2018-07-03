@@ -11,7 +11,7 @@ public class FindMiddleInList {
 	public static void findMiddle(Node head) {
 		Node fast = head;
 		Node slow = head;
-		while(fast != null && fast.getNext() != null && fast.getNext().getNext() != null) {
+		while(fast != null && fast.getNext() != null ) {
 			fast = fast.getNext().getNext();
 			slow = slow.getNext();
 		}

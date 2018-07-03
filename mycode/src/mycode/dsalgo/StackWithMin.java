@@ -2,13 +2,9 @@ package mycode.dsalgo;
 
 import java.util.Stack;
 
-public class StackWithMin extends Stack<Integer>{
-	Stack<Integer> minStack;
+public class StackWithMin extends Stack<Integer> {
+	Stack<Integer> minStack = new Stack<Integer>();
 
-	StackWithMin() {
-		minStack = new Stack<Integer>();
-	}
-	
 	public Integer push(Integer value) {	
 		if(value <= min()) {
 			minStack.push(value);
@@ -36,7 +32,7 @@ public class StackWithMin extends Stack<Integer>{
 		st.push(2);
 		st.push(1);
 		st.push(4);
-		st.push(0);
+		//st.push(0);
 		st.push(3);
 		System.out.println("Min value is "+st.min());
 	}

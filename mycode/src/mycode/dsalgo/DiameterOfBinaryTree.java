@@ -14,27 +14,27 @@ public class DiameterOfBinaryTree {
 		System.out.println("Diameter is "+diameterOfBinaryTree(root));
 
 	}
-    public static int diameterOfBinaryTree(TreeNode node)
+    public static int diameterOfBinaryTree(TreeNode root)
     {
     	/*
     	 * Time T(N) = 2 * NlogN + 2 * T(N/2) + cN ==> NlogN
     	 * Space =  O(logN) for stack
     	 */
-        if (node == null)
+        if (root == null)
         {
             return 0;
         }
  
-        int leftHeight = heightOfBinaryTree(node.left);
-        int rightHeight = heightOfBinaryTree(node.right);
+        int leftHeight = heightOfBinaryTree(root.left);
+        int rightHeight = heightOfBinaryTree(root.right);
  
-        //Diameter of the node itself including
-        int nodeDiameter = leftHeight + rightHeight + 1;
-        int leftDiameter = diameterOfBinaryTree(node.left);
-        int rightDiameter = diameterOfBinaryTree(node.right);
+        //if diameter passes through root
+        int rootDiameter = leftHeight + rightHeight + 1;
+        //if diameter does not pass through root
+        int leftDiameter = diameterOfBinaryTree(root.left);
+        int rightDiameter = diameterOfBinaryTree(root.right);
  
-        return Math.max(nodeDiameter,
-            Math.max(leftDiameter, rightDiameter));
+        return Math.max(rootDiameter, Math.max(leftDiameter, rightDiameter));
     }
  
     public static int heightOfBinaryTree(TreeNode node)

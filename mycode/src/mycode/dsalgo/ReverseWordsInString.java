@@ -35,6 +35,6 @@ public class ReverseWordsInString {
 			beginIndex++;
 			endIndex--;
 		}
-		return arr;	
+		return arr;
 	}
 }

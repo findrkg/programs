@@ -3,11 +3,13 @@ package mycode.dsalgo;
 public class TreeNode {
 
 	int data = 0;
+	int hd = 0; // horizontal distance
 	TreeNode left = null;
 	TreeNode right = null;
 
 	TreeNode() {
 		this.data = 0;
+		this.hd = Integer.MAX_VALUE;;
 		this.left = null;
 		this.right = null;
 	}

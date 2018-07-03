@@ -21,17 +21,15 @@ public class ReverseList {
 		return prev;
 	}
 	
-	private static void reverseRec(Node current) {
-		if(current == null) {
-			return;
-		}
+	private static Node reverseRec(Node current) {
+		Node newHead = null;
 		if(current.next == null) {
-			head = current;
-			return;
+			return current;
 		}
-		reverseRec(current.next);
+		newHead = reverseRec(current.next);
 		current.next.next = current;
 		current.next = null;
+		return newHead;
 	}
 	
 	private static void print(Node head) {

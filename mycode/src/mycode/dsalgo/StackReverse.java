@@ -1,24 +1,23 @@
 package mycode.dsalgo;
 
-import java.util.ArrayDeque;
 import java.util.Stack;
 
 public class StackReverse {
-
-    public static void reverse(Stack<Integer> stack) {
+	static Stack<Integer> stack = new Stack<>();
+    static void reverseStack() {
         if (stack.isEmpty()) {
             return;
         }
 
-        /** First pop all element from stack **/
+        /** First pop all elements from stack **/
         int element = stack.pop();
-        reverse(stack);
+        reverseStack();
 
         /** Insert element at bottom of stack **/
-        insertAtBottom(stack, element);
+        insertAtBottom(element);
     }
 
-    private static void insertAtBottom(Stack<Integer> stack, int element) {
+    static void insertAtBottom(int element) {
 
         /** if stack is empty then add element in stack **/
         if (stack.isEmpty()) {
@@ -28,20 +27,19 @@ public class StackReverse {
 
         /** temporarily remove all element from stack to add element at bottom  **/
         int temp = stack.pop();
-        insertAtBottom(stack, element);
+        insertAtBottom(element);
 
         /** Add removed elements back to stack after adding bottom element **/
         stack.push(temp);
     }
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
         stack.push(1);
         stack.push(2);
         stack.push(3);
         stack.push(4);
         System.out.println(stack);
-        StackReverse.reverse(stack);
+        reverseStack();
         System.out.println(stack);
     }
 

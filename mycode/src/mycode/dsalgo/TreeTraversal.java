@@ -124,9 +124,9 @@ public class TreeTraversal {
 	}
 
 	public void inOrder(TreeNode root) {
-		if (root != null) {
-			// Visit the node-Printing the node data			
+		if (root != null) {					
 			inOrder(root.left);
+			// Visit the node-Printing the node data
 			System.out.print(root.data + " ");
 			inOrder(root.right);
 		}
@@ -190,7 +190,7 @@ public class TreeTraversal {
 		st.push(root);
 		while(!st.isEmpty()) {
 			TreeNode node = st.peek();
-	        if(node.left == null && node.right == null) {
+	        if(node.left == null && node.right == null) {// check for leaf node
 	            TreeNode n = st.pop();
 	            System.out.print(n.data+" ");
 	        }
