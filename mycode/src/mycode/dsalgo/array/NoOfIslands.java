@@ -34,7 +34,7 @@ public class NoOfIslands {
 	    int m=grid.length;
 	    int n=grid[0].length;
 	 
-	    if(i<0||i>=m||j<0||j>=n|| grid[i][j]!= 1) {
+	    if(i<0||i>=m||j<0||j>=n|| grid[i][j] != 1) {
 	    	return;
 	    }	        
 	 

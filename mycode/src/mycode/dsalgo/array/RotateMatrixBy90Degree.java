@@ -3,9 +3,9 @@ package mycode.dsalgo.array;
 public class RotateMatrixBy90Degree {
 
 	public static void main(String[] args) {
-		int[][] matrix = {	{ 1, 2, 3, 4 }, 
-							{ 5, 6, 7, 8 }, 
-							{ 9, 10, 11, 12 }, 
+		int[][] matrix = {	{ 1,  2,  3,  4 }, 
+							{ 5,  6,  7,  8 }, 
+							{ 9,  10, 11, 12 }, 
 							{ 13, 14, 15, 16 } };
 		//rotateMatrixInplace(matrix);
 		//printMatrix(matrix);
@@ -35,14 +35,14 @@ public class RotateMatrixBy90Degree {
 	// Rotate Matrix to 90 degree toward Right(clockwise)
 	private static int[][] rotateMatrixBy90DegreeClockwise(int[][] matrix) {
 
-		int totalRowsOfRotatedMatrix = matrix[0].length; // Total columns of Original Matrix
-		int totalColsOfRotatedMatrix = matrix.length; // Total rows of Original Matrix
+		int rowCountRotatedMatrix = matrix[0].length; // Total columns of Original Matrix
+		int colCountRotatedMatrix = matrix.length; // Total rows of Original Matrix
 
-		int[][] rotatedMatrix = new int[totalRowsOfRotatedMatrix][totalColsOfRotatedMatrix];
+		int[][] rotatedMatrix = new int[rowCountRotatedMatrix][colCountRotatedMatrix];
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
-				rotatedMatrix[j][(totalColsOfRotatedMatrix - 1) - i] = matrix[i][j];
+				rotatedMatrix[j][(colCountRotatedMatrix-1) - i] = matrix[i][j];
 			}
 		}
 		return rotatedMatrix;
@@ -51,14 +51,14 @@ public class RotateMatrixBy90Degree {
 	// Rotate Matrix to 90 degree toward Left(counter clockwise)
 	private static int[][] rotateMatrixBy90DegreeCounterClockwise(int[][] matrix) {
 
-		int totalRowsOfRotatedMatrix = matrix[0].length; // Total columns of Original Matrix
-		int totalColsOfRotatedMatrix = matrix.length; // Total rows of Original Matrix
+		int rowCountRotatedMatrix = matrix[0].length-1; // Total columns of Original Matrix
+		int colCountRotatedMatrix = matrix.length-1; // Total rows of Original Matrix
 
-		int[][] rotatedMatrix = new int[totalRowsOfRotatedMatrix][totalColsOfRotatedMatrix];
+		int[][] rotatedMatrix = new int[rowCountRotatedMatrix][colCountRotatedMatrix];
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
-				rotatedMatrix[(totalRowsOfRotatedMatrix - 1) - j][i] = matrix[i][j];
+				rotatedMatrix[(rowCountRotatedMatrix-1) - j][i] = matrix[i][j];
 			}
 		}
 		return rotatedMatrix;

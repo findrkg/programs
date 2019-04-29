@@ -5,6 +5,8 @@ public class ElementFrequencyInArray {
 	public static void main(String[] args) {
 		int[] arr = {2, 3, 3, 2, 5};
 		findFrequency(arr);
+		System.out.println();
+		countFrequencies(arr);
 	}
 
 	// O(n) time and O(1) space
@@ -19,7 +21,7 @@ public class ElementFrequencyInArray {
         }
  
         for (int i = 0; i < n; i++) {
-            System.out.println((i + 1) + " = " + input[i] / n);
+            System.out.println((i + 1) + " => " + input[i] / n);
             // Change the element back to original value
             input[i] = input[i] % n + 1;
         }
@@ -30,16 +32,16 @@ public class ElementFrequencyInArray {
         int n = input.length;
         int[] count = new int[n];
  
-        for (int i = 0; i < n; i++) {
-            count[i] = 0;
-        }
+//        for (int i = 0; i < n; i++) {
+//            count[i] = 0;
+//        }
  
         for (int i = 0; i < n; i++) {
             count[input[i] - 1]++;
         }
  
         for (int i = 0; i < n; i++) {
-            System.out.println(i + 1 + " " + count[i]);
+            System.out.println(i + 1 + " -> " + count[i]);
         }
     }
 }

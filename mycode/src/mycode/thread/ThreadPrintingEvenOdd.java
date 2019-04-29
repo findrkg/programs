@@ -27,7 +27,7 @@ class ThreadEven extends Thread {
 		try {
 			synchronized (lock) {
 				for (int i = 0; i < 100; i++) {
-					while (lock.counter < 100 && lock.counter%2 != 0) {
+					while (lock.counter < 100 && lock.counter%2 == 1) {
 						lock.wait();
 					}
 					System.out.println(Thread.currentThread().getName() + " - "+lock.counter++);

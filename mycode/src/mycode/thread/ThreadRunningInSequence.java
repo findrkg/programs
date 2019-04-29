@@ -40,7 +40,7 @@ class ThreadA extends Thread {
 						lock.wait();
 					}
 
-					System.out.print("A "+ i);
+					System.out.println("A "+ i);
 					Thread.sleep(1000);
 					lock.counter = 2;
 					lock.notifyAll();
@@ -75,7 +75,7 @@ class ThreadB extends Thread {
 						lock.wait();
 					}
 
-					System.out.print("B "+i);
+					System.out.println("B "+i);
 					Thread.sleep(1000);
 					lock.counter = 3;
 					lock.notifyAll();
@@ -109,7 +109,7 @@ class ThreadC extends Thread {
 						lock.wait();
 					}
 
-					System.out.print("C "+i);
+					System.out.println("C "+i);
 					Thread.sleep(1000);
 					lock.counter = 1;
 					lock.notifyAll();

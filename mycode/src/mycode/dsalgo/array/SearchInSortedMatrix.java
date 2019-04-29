@@ -15,8 +15,8 @@ public class SearchInSortedMatrix {
 	public static boolean search(int[][] matrix, int target) {
 		int rowLength = matrix.length;
 		int colLength = matrix[0].length;
-		int row = 0;
-		int col = colLength-1;
+		int row = 0; // first row
+		int col = colLength-1; // last coloumn
 		while(row <= rowLength-1 && col >= 0) {
 			if(matrix[row][col] == target) {
 				return true;
