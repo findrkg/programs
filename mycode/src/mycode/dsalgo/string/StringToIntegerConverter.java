@@ -9,12 +9,12 @@ public class StringToIntegerConverter {
 
 	private static int stringToInteger(String str) {
 		int num = 0;
-		int index = 0;
-		while(index < str.length()) {
+		
+		for(int index = 0; index < str.length(); index++) {
 			char ch = str.charAt(index);
 			if(ch >= '0' && ch <= '9') {
 				num = num*10 + (ch-'0');
-				index++;
+				
 			}
 			else {
 				throw new NumberFormatException("invalid input");

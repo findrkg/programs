@@ -38,12 +38,12 @@ public class MyArrayList<T> extends AbstractList<T> implements List<T> {
 	public void ensureCapacity(int minCapacity) {
 		int oldCapacity = list.length;
 		if (minCapacity > oldCapacity) {
-			Object oldData[] = list;
+			Object[] oldData = list;
 			int newCapacity = (oldCapacity * 3) / 2 + 1;
 			if (newCapacity < minCapacity)
 				newCapacity = minCapacity;
 			// minCapacity is usually close to size, so this is a win:
-			list = Arrays.copyOf(list, newCapacity);
+			list = Arrays.copyOf(oldData, newCapacity);
 		}
 	}
 

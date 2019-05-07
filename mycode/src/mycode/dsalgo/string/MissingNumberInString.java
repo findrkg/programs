@@ -3,12 +3,12 @@ package mycode.dsalgo.string;
 public class MissingNumberInString {
 
 	public static void main(String[] args) {
-		String str = "99100102"; // max 6 digits
+		String str = "12345678911"; // max 6 digits
 		System.out.println(findMissingNumber(str));
 	}
 
 	static String to_string(int n) {
-		return ""+n;
+		return String.valueOf(n);
 	}
 
 	static boolean expectedNextNum(String str, int expectedNextNum, int start)
@@ -17,7 +17,7 @@ public class MissingNumberInString {
 	        return false;
 	    }
 
-	    int nextNum = Integer.parseInt(str.substring(start, to_string(expectedNextNum).length()));
+	    int nextNum = Integer.parseInt(str.substring(start, start+to_string(expectedNextNum).length()));
 	    return (nextNum == expectedNextNum);
 	}
 
@@ -26,32 +26,28 @@ public class MissingNumberInString {
 	    int len = str.length();
 	    int i = 1;
 	    int missingNum = -1;
-	    boolean fail = false;
+	    //boolean fail = false;
 
 	    while(i <= len){
 	        int start = i;
 	        int curr = Integer.parseInt(str.substring(0, i));
-
-//	        while(bOk){
+	        while(true){
 	            if(expectedNextNum(str, curr + 1, start)){
 	                start += to_string(curr + 1).length();
-	                curr = curr + 1;	                
+	                curr = curr + 1;
 	            }
-	            else if(expectedNextNum(str, curr + 2, start)){	            	
+	            else if(expectedNextNum(str, curr + 2, start)){
 	                start += to_string(curr + 2).length();
 	                missingNum = curr + 1;
 	                curr = curr + 2;
+	                return missingNum;
 	            }
 	            else {
-	            	fail = true;
 	            	break;
 	            }
-//	        }
-	        if(!fail){
-	            return missingNum;
 	        }
 	        i++;
 	    }
-	    return -1;
+	    return missingNum;
 	}
 }

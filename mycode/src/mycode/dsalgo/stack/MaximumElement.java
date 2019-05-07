@@ -14,7 +14,7 @@ public class MaximumElement {
 		int data;
 		for(int i=0; i < n; i++) {
 			int type = in.nextInt();
-			if(type == 1) {
+			if(type == 1) {// push operation
 				data = in.nextInt();
 				stack.push(data);
                 if(!maxstack.isEmpty()) {
@@ -26,7 +26,7 @@ public class MaximumElement {
                     maxstack.push(data);
                 }                
 			}
-			else if(type == 2) {
+			else if(type == 2) {// pop operation
 				int rdata = stack.pop();
                 int top = -1;
                 if(!maxstack.isEmpty()) {
@@ -41,6 +41,7 @@ public class MaximumElement {
 					System.out.println(maxstack.peek());
 				}
 			}
-		}        
+		}
+		in.close();
     }   
 }

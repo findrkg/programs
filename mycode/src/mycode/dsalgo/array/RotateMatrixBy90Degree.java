@@ -7,10 +7,10 @@ public class RotateMatrixBy90Degree {
 							{ 5,  6,  7,  8 }, 
 							{ 9,  10, 11, 12 }, 
 							{ 13, 14, 15, 16 } };
-		//rotateMatrixInplace(matrix);
-		//printMatrix(matrix);
-		int[][] rotatedMatrix = rotateMatrixBy90DegreeClockwise(matrix);
-		printMatrix(rotatedMatrix);
+		rotateMatrixInplace(matrix);
+		printMatrix(matrix);
+		//int[][] rotatedMatrix = rotateMatrixBy90DegreeClockwise(matrix);
+		//printMatrix(rotatedMatrix);
 	}
 
 	// possible only in SQURE matrix

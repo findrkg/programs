@@ -1,7 +1,5 @@
 package mycode.dsalgo.array;
 
-import java.util.ArrayList;
-import java.util.Collections;
 //Java Program to print all subsequence of a
 //given string.
 import java.util.HashSet;
@@ -11,7 +9,7 @@ public class AllSubsequence {
 	// Driver code
 	public static void main(String[] args)
 	{
-		String str="ggg";
+		String str="abc";
 		HashSet<String> set = new HashSet<>();		
 		//System.out.println("All substring of abbc are:");
 		for (int i = 0; i < str.length(); i++) {
